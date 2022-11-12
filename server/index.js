@@ -17,8 +17,8 @@ class MainServer {
   constructor(dburl) {
     this.dburl = dburl;
     this.app = express();
-    app.use(logger('dev'));
-    app.use(cors());
+    this.app.use(logger('dev'));
+    this.app.use(cors());
     this.app.use(express.json());
     this.app.use(express.urlencoded({extended:true}));
     this.app.use(expressSession(sessionConfig));
@@ -30,8 +30,9 @@ class MainServer {
     
     this.app.post('/found/create', async (req, res) => {
       try {
-        const {item, description, name, email, location, today} = req.body;
-        await self.db.createFound(item, description, name, email, location, today);
+        const {item, description, name, email, location} = req.body;
+        console.log(item)
+        await self.db.createFound(item, description, name, email, location);
       } catch (err) {
         res.status(500).send(err);
       }
@@ -57,8 +58,8 @@ class MainServer {
 
     this.app.post('/lost/create', async (req, res) => {
       try {
-        const {item, description, name, email, location, today} = req.body;
-        await self.db.createLost(item, description, name, email, location, today);
+        const {item, description, name, email, location} = req.body;
+        await self.db.createLost(item, description, name, email, location);
       } catch (err) {
         res.status(500).send(err);
       }
