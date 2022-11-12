@@ -31,6 +31,46 @@ export class MainDatabase {
     this.client.close();
   }
 
+  // create Found
+  async createFound(item, description, name, email, location) {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    today = mm + '/' + dd + '/' + yyyy;
+    await this.foundCollection.insertOne({item, description, name, email, location, today})
+  }
+
+  // read all found from the found collection
+  async readAllFound() {
+    const res = await this.foundCollection.find({}).toArray();
+    return res;
+  }
+
+  async deleteFound(item, description, name, email, location) {
+    await this.foundCollection.deleteOne({ item:item, description:description, name:name, email:email, location:location});
+  }
+
+  // create Lost
+  async createLost(item, description, name, email, location) {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    today = mm + '/' + dd + '/' + yyyy;
+    await this.lostCollection.insertOne({item, description, name, email, location, today})
+  }
+
+  // read all lost from the lost collection
+  async readAllLost() {
+    const res = await this.lostCollection.find({}).toArray();
+    return res;
+  }
+
+  async deleteLost(item, description, name, email, location) {
+    await this.lostCollection.deleteOne({ item:item, description:description, name:name, email:email, location:location });
+  }
+
   // upload post to user in user collection and add a post in post collection
   async uploadPost(email, upload, type, Description) {
 
