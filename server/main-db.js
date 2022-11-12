@@ -71,23 +71,4 @@ export class MainDatabase {
     await this.lostCollection.deleteOne({ item:item, description:description, name:name, email:email, location:location });
   }
 
-  // create a new user and add it to the user collection
-  async addUser(email, realname, name, pwd) {
-    if (await this.findUser(name)) {
-      return false;
-    }
-    await this.userCollection.insertOne({name, realname, pwd, email, pictures:[], pfp:null});
-    return true;
-  }
-
-  // if the user exists in the user collection
-  async findUser(username) {
-    const res = await this.userCollection.findOne({name:username});
-    if(res != null){
-      return true;
-    } else {
-      return false;
-    }
-  }
-
 }

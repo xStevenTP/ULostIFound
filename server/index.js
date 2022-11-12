@@ -20,16 +20,12 @@ class MainServer {
     this.app.use(expressSession(sessionConfig));
   }
   
-
   async initRoutes() {
     // Note: when using arrow functions, the "this" binding is lost.
     const self = this;
     
-    //route to upload pictures to the database from the user
-    this.app.post('/newItem', this.upload.single('newItem'), async (req, res) => {
+    this.app.post('/found/create', async (req, res) => {
       try {
-        const img = fs.readFileSync(req.file.path);
-        const encode_img = img.toString('base64');
         const {item, description, name, email, location, today} = req.body;
         await self.db.createFound(item, description, name, email, location, today);
       } catch (err) {
@@ -37,21 +33,26 @@ class MainServer {
       }
     });
 
-    //route to delete an entire user, delete part of our CRUD
-    this.app.delete('/user/delete', async (req, res) => {
+    this.app.get('/found/all', async (req, res) => {
       try {
-        const {item, description, name, email, location} = req.body;
-        await self.db.deleteFound(item, description, name, email, location);
-        res.status(200).send();
+        const found = await self.db.readAllFound();
+        res.send(JSON.stringify(found));
       } catch (err) {
         res.status(500).send(err);
       }
     });
 
-    this.app.post('/newItem', this.upload.single('newItem'), async (req, res) => {
+    this.app.delete('/found/delete', async (req, res) => {
       try {
-        const img = fs.readFileSync(req.file.path);
-        const encode_img = img.toString('base64');
+        const {item, description, name, email, location} = req.body;
+        await self.db.deleteFound(item, description, name, email, location);
+      } catch (err) {
+        res.status(500).send(err);
+      }
+    });
+
+    this.app.post('/lost/create', async (req, res) => {
+      try {
         const {item, description, name, email, location, today} = req.body;
         await self.db.createLost(item, description, name, email, location, today);
       } catch (err) {
@@ -59,22 +60,19 @@ class MainServer {
       }
     });
 
-    //route to delete an entire user, delete part of our CRUD
-    this.app.delete('/user/delete', async (req, res) => {
+    this.app.get('/lost/all', async (req, res) => {
       try {
-        const {item, description, name, email, location} = req.body;
-        await self.db.deleteLost(item, description, name, email, location);
-        res.status(200).send();
+        const lost = await self.db.readAllLost();
+        res.send(JSON.stringify(lost));
       } catch (err) {
         res.status(500).send(err);
       }
     });
 
-    //route to get all the posts for the feed page
-    this.app.get('/post/all', async (req, res) => {
+    this.app.delete('/lost/delete', async (req, res) => {
       try {
-        const post = await self.db.readAllPosts();
-        res.send(JSON.stringify(post));
+        const {item, description, name, email, location} = req.body;
+        await self.db.deleteLost(item, description, name, email, location);
       } catch (err) {
         res.status(500).send(err);
       }
