@@ -26,13 +26,12 @@ class MainServer {
     const self = this;
     
     //route to upload pictures to the database from the user
-    this.app.post('/upload', this.upload.single('upload'), async (req, res) => {
+    this.app.post('/newItem', this.upload.single('newItem'), async (req, res) => {
       try {
         const img = fs.readFileSync(req.file.path);
         const encode_img = img.toString('base64');
-        const {email, Description} = req.body;
-        await self.db.uploadPost(email, encode_img, req.file.mimetype, Description);
-        res.redirect('/profile');
+        const {item, description, name, email, location, today} = req.body;
+        await self.db.createFound(item, description, name, email, location, today);
       } catch (err) {
         res.status(500).send(err);
       }
@@ -41,8 +40,30 @@ class MainServer {
     //route to delete an entire user, delete part of our CRUD
     this.app.delete('/user/delete', async (req, res) => {
       try {
-        const {email} = req.body;
-        await self.db.deleteUser(email);
+        const {item, description, name, email, location} = req.body;
+        await self.db.deleteFound(item, description, name, email, location);
+        res.status(200).send();
+      } catch (err) {
+        res.status(500).send(err);
+      }
+    });
+
+    this.app.post('/newItem', this.upload.single('newItem'), async (req, res) => {
+      try {
+        const img = fs.readFileSync(req.file.path);
+        const encode_img = img.toString('base64');
+        const {item, description, name, email, location, today} = req.body;
+        await self.db.createLost(item, description, name, email, location, today);
+      } catch (err) {
+        res.status(500).send(err);
+      }
+    });
+
+    //route to delete an entire user, delete part of our CRUD
+    this.app.delete('/user/delete', async (req, res) => {
+      try {
+        const {item, description, name, email, location} = req.body;
+        await self.db.deleteLost(item, description, name, email, location);
         res.status(200).send();
       } catch (err) {
         res.status(500).send(err);
