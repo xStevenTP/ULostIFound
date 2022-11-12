@@ -1,5 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
+import cors from 'cors';
+import logger from 'morgan';
 import { MainDatabase } from './main-db.js';
 import expressSession from 'express-session';
 
@@ -15,6 +17,8 @@ class MainServer {
   constructor(dburl) {
     this.dburl = dburl;
     this.app = express();
+    app.use(logger('dev'));
+    app.use(cors());
     this.app.use(express.json());
     this.app.use(express.urlencoded({extended:true}));
     this.app.use(expressSession(sessionConfig));
