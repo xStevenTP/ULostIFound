@@ -71,49 +71,6 @@ export class MainDatabase {
     await this.lostCollection.deleteOne({ item:item, description:description, name:name, email:email, location:location });
   }
 
-  // upload post to user in user collection and add a post in post collection
-  async uploadPost(email, upload, type, Description) {
-
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0');
-    var yyyy = today.getFullYear();
-    today = mm + '/' + dd + '/' + yyyy;
-    const data = await this.userCollection.findOne({ email : email });
-    let pictures = data.pictures;
-    const post = [upload, type, Description, data.name, today];
-    pictures.push(post);
-    await this.userCollection.updateOne(
-      { email: email },
-      { $set: {pictures} }
-    );
-    await this.postCollection.insertOne({post, email});
-  }
-
-  // upload profile pic of user to usercollection
-  async uploadPFP(email, upload, type){
-    const pfp = [type, upload];
-    await this.userCollection.updateOne(
-      { email: email },
-      { $set: {pfp} }
-    );
-  }
-
-  // delete an entire user and all of their posts from the post collection
-  async deleteUser(email) {
-    // Note: the result received back from MongoDB does not contain the
-    // entire document that was deleted from the database. Instead, it
-    // only contains the 'deletedCount' (and an acknowledged field).
-    await this.postCollection.deleteMany({email:email});
-    await this.userCollection.deleteOne({ email: email });
-  }
-
-  // read all posts from the post collection
-  async readAllPosts() {
-    const res = await this.postCollection.find({}).toArray();
-    return res;
-  }
-
   // create a new user and add it to the user collection
   async addUser(email, realname, name, pwd) {
     if (await this.findUser(name)) {
