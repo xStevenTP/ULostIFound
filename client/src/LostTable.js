@@ -13,10 +13,7 @@ import { useTheme } from "@table-library/react-table-library/theme";
 import { FormControlLabel, FormGroup, TextField } from "@mui/material";
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import "./LostTable.css";
-import { textAlign } from "@mui/system";
 import axios from "axios";
 
 const THEME = {

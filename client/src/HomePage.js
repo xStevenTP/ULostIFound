@@ -9,25 +9,23 @@ import React from "react";
 function HomePage(){
     const [lost, setLost] = React.useState([]);
     const [found, setFound] = React.useState([]);
-    let foundData = [];
-    let lostData = [];
     
-    const getBuildings = async (building) => {
+    const getBuildings = (building) => {
         axios.get(`http://localhost:8080/found/${building}`)
         .then ((response) => {
-            foundData = response.data;
-            setFound(foundData);
-            console.log(foundData);
-            console.log(response.data);
-            console.log(found);
+            setFound(response.data);
         })
+        .catch(error => console.error((`Error: ${error}`)))
         axios.get(`http://localhost:8080/lost/${building}`)
         .then ((response) => {
-            lostData = response.data;
-            setLost(lostData);
-            console.log(lost);
-    });
+            setLost(response.data);
+    })
+    .catch(error => console.error((`Error: ${error}`)));
     }
+
+    React.useEffect(() => {
+        getBuildings();
+    }, []);
 
     return(
         <div>    
@@ -43,30 +41,27 @@ function HomePage(){
                         point.coorindate[1]
                     ]}
                     eventHandlers={{
-                        click: async(e) => {
-                            await getBuildings(point.location);
-                            //console.log(found);
-                            //console.log(lost);
-                            //console.log(foundData);
+                        click: (e) => {
+                            getBuildings(point.location);
                         },
                     }}
                     >
                         <Popup>
                             <div>
                                 Found
-                                {foundData.map(value => {
-                                    <div>
-                                    {value.item} {value.name} {value.description} {value.location} {value.email}
-                                    </div>
+                                <div>
+                                {found.map(function(value, idx){
+                                   return (<li key ={idx}>{value.item} {value.name} {value.description} {value.location} {value.email}</li>)
                                 })}
+                                </div>
                             </div>
                             <div>
                                 Lost
-                                {lost.map(value => {
-                                    <div>
-                                    {value.item} {value.name} {value.description} {value.location} {value.email}
-                                    </div>
+                                <div>
+                                {lost.map(function(value, idx){
+                                   return (<li key ={idx}>{value.item} {value.name} {value.description} {value.location} {value.email}</li>)
                                 })}
+                                </div>
                             </div>
                         </Popup>
                     </Marker>
