@@ -276,7 +276,7 @@ const LostTable = () => {
           (filters.includes("Stockbridge") && item.location === "Stockbridge") ||
           (filters.includes("Lederle") && item.location === "Lederle") ||
           (filters.includes("Flint") && item.location === "Flint")) &&
-        item.name.toLowerCase().includes(search.toLowerCase())
+          item.item.toLowerCase().includes(search.toLowerCase())
     ),
   };
 
