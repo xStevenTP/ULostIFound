@@ -28,6 +28,13 @@ function HomePage(){
                     url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoib2J0dXNldHVydGxlIiwiYSI6ImNsYWVtcGYwczBlNG4zcG8zNGo3MTlsZ2oifQ.Zp-jgwMIdlAhjO6BbRd7Pw"
                     attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
                 />
+                <Marker position = {[42.38972499338459, -72.52825871862946]} 
+                  eventHandlers={{
+                    click: (e) => {
+                      console.log('marker clicked', e)
+                    },
+                  }}>
+                </Marker>
             </MapContainer>
         </div>
     )
