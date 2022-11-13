@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Table,
   Header,
@@ -17,6 +17,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import './LostTable.css';
 import { textAlign } from '@mui/system';
+import axios from 'axios';
 
 const THEME = {
   Table: `
@@ -42,6 +43,7 @@ const THEME = {
 };
 
 
+/*
 const list = [
   {
     itemName: "Airpods",
@@ -62,25 +64,47 @@ const list = [
     contact: 'jasmine@gmail.com',
   },
 ];
+*/
 
 const LostTable = () => {
+
+  const [list, setList] = React.useState([]);
+  
+  const url = `http://localhost:8080/found/all`;
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = () => {
+      axios.get(url)
+      .then((response) => {
+        setList(response.data);
+        console.log(response.data);
+        console.log(list);
+      })
+      .catch(error => console.error((`Error: ${error}`)))
+  }
+
+  
+
   const theme = useTheme(THEME);
   const [filters, setFilters] = React.useState([
     'Baker', 'Bartlett', 'Berkshire', 'Birch',
     'Bowditch', 'Boyden', 'Brett', 'Brooks', 'Butterfield',
-    'Campus Center', 'Chadbourne', 'Gorman', 'Greenough',
-    'Central', 'Champions Center', 'Clark', 'Honors College',
+    'Campus Center', 'Crabtree', 'Chadbourne', 'Gorman', 'Greenough',
+    'Champions Center', 'Clark', 'Honors College',
     'CS Building', 'Coolidge', 'Dickinson', 'Du Bois Library',
     'Dwight', 'Elm', 'Emerson', 'Engineering Lab',
-    'Fine Arts Center', 'Flint', 'Franklin', 'Goessmann',
+    'Fine Arts Center', 'Flint', 'Franklin', 'Goessman',
     'Grinnell', 'Grayson', 'Gunness', 'Haigis',
-    'Hampshire', 'Hasbrouck', 'Herter',
-    'JQA', 'Johnson', 'Kennedy', 'Knowles',
+    'Hampshire', 'Hasbrouck', 'Herter', 'Hamlin',
+    'JQA', 'Johnson', 'Kennedy', 'Knowles', 'Knowlton',
     'Lederle', 'Life Sciences', 'Lorden', 'Mahar', 'Lewis',
     'Marcus', 'Marston', 'McNamara', 'Memorial Hall',
-    'Moore', 'Morrill', 'Mullins Center',
+    'Moore', 'Morrill', 'Mullins Center', 'Mary Lyon',
     'Oak', 'Paige', 'Patterson', 'Physical Sciences', 'Robotics',
-    'South College', 'Student Union', 'Studio Arts',
+    'South College', 'Student Union', 'Studio Arts', 'Leach',
     'Sycamore', 'Tennis Courts', 'Thatcher', 'Thompson',
     'Thoreau', 'University Health Services', 'Van Meter',
     'Visitors Center', 'Whitmore', 'Webster', 'Wheeler',
@@ -104,6 +128,7 @@ const LostTable = () => {
 
   const handleOpenAcademic = () => {
     setOpenAcademic(!openAcademic);
+    filter();
   };
 
   const handleOpenDiningHalls = () => {
@@ -149,115 +174,119 @@ const LostTable = () => {
   };
 
   const data = {
-    nodes: list.filter((item) => 
-    ((filters.includes('Worcester') && item.where === ('Worcester')) ||
-    (filters.includes('Hampshire') && item.where === ('Hampshire')) ||
-    (filters.includes('Franklin') && item.where === ('Franklin')) ||
-    (filters.includes('Berkshire') && item.where === ('Berkshire')) ||
+    nodes: list.filter( (item) =>
+    ((filters.includes('Worcester') && item.location === ('Worcester')) ||
+    (filters.includes('Hampshire') && item.location === ('Hampshire')) ||
+    (filters.includes('Franklin') && item.location === ('Franklin')) ||
+    (filters.includes('Berkshire') && item.location === ('Berkshire')) ||
 
-    (filters.includes('Baker') && item.where === ('Baker')) ||
-    (filters.includes('Brett') && item.where === ('Brett')) ||
-    (filters.includes('Brooks') && item.where === ('Brooks')) ||
-    (filters.includes('Butterfield') && item.where === ('Butterfield')) ||
-    (filters.includes('Chadbourne') && item.where === ('Chadbourne')) ||
-    (filters.includes('Gorman') && item.where === ('Gorman')) ||
-    (filters.includes('Greenough') && item.where === ('Greenough')) ||
-    (filters.includes('Van Meter') && item.where === ('Van Meter')) ||
-    (filters.includes('Wheeler') && item.where === ('Wheeler')) ||
+    (filters.includes('Baker') && item.location === ('Baker')) ||
+    (filters.includes('Brett') && item.location === ('Brett')) ||
+    (filters.includes('Brooks') && item.location === ('Brooks')) ||
+    (filters.includes('Butterfield') && item.location === ('Butterfield')) ||
+    (filters.includes('Chadbourne') && item.location === ('Chadbourne')) ||
+    (filters.includes('Gorman') && item.location === ('Gorman')) ||
+    (filters.includes('Greenough') && item.location === ('Greenough')) ||
+    (filters.includes('Van Meter') && item.location === ('Van Meter')) ||
+    (filters.includes('Wheeler') && item.location === ('Wheeler')) ||
 
-    (filters.includes('Birch') && item.where === ('Birch')) ||
-    (filters.includes('Elm') && item.where === ('Elm')) ||
-    (filters.includes('Linden') && item.where === ('Linden')) ||
-    (filters.includes('Maple') && item.where === ('Maple')) ||
-    (filters.includes('Oak') && item.where === ('Oak')) ||
-    (filters.includes('Sycamore') && item.where === ('Sycamore')) ||
+    (filters.includes('Birch') && item.location === ('Birch')) ||
+    (filters.includes('Elm') && item.location === ('Elm')) ||
+    (filters.includes('Linden') && item.location === ('Linden')) ||
+    (filters.includes('Maple') && item.location === ('Maple')) ||
+    (filters.includes('Oak') && item.location === ('Oak')) ||
+    (filters.includes('Sycamore') && item.location === ('Sycamore')) ||
 
-    (filters.includes('Crabtree') && item.where === ('Crabtree')) ||
-    (filters.includes('Dwight') && item.where === ('Dwight')) ||
-    (filters.includes('Hamlin') && item.where === ('Hamlin')) ||
-    (filters.includes('Johnson') && item.where === ('Johnson')) ||
-    (filters.includes('Knowlton') && item.where === ('Knowlton')) ||
-    (filters.includes('Leach') && item.where === ('Leach')) ||
-    (filters.includes('Lewis') && item.where === ('Lewis')) ||
-    (filters.includes('Mary Lyon') && item.where === ('Mary Lyon')) ||
-    (filters.includes('Thatcher') && item.where === ('Thatcher')) ||
+    (filters.includes('Crabtree') && item.location === ('Crabtree')) ||
+    (filters.includes('Dwight') && item.location === ('Dwight')) ||
+    (filters.includes('Hamlin') && item.location === ('Hamlin')) ||
+    (filters.includes('Johnson') && item.location === ('Johnson')) ||
+    (filters.includes('Knowlton') && item.location === ('Knowlton')) ||
+    (filters.includes('Leach') && item.location === ('Leach')) ||
+    (filters.includes('Lewis') && item.location === ('Lewis')) ||
+    (filters.includes('Mary Lyon') && item.location === ('Mary Lyon')) ||
+    (filters.includes('Thatcher') && item.location === ('Thatcher')) ||
 
-    (filters.includes('Field') && item.where === ('Field')) ||
-    (filters.includes('Grayson') && item.where === ('Grayson')) ||
-    (filters.includes('Webster') && item.where === ('Webster')) ||
+    (filters.includes('Field') && item.location === ('Field')) ||
+    (filters.includes('Grayson') && item.location === ('Grayson')) ||
+    (filters.includes('Webster') && item.location === ('Webster')) ||
 
-    (filters.includes('Cance') && item.where === ('Cance')) ||
-    (filters.includes('Coolidge') && item.where === ('Coolidge')) ||
-    (filters.includes('Crampton') && item.where === ('Crampton')) ||
-    (filters.includes('Emerson') && item.where === ('Emerson')) ||
-    (filters.includes('James') && item.where === ('James')) ||
-    (filters.includes('John Adams') && item.where === ('John Adams')) ||
-    (filters.includes('JQA') && item.where === ('JQA')) ||
-    (filters.includes('Kennedy') && item.where === ('Kennedy')) ||
-    (filters.includes('MacKimmie') && item.where === ('MacKimmie')) ||
-    (filters.includes('Melville') && item.where === ('Melville')) ||
-    (filters.includes('Moore') && item.where === ('Moore')) ||
-    (filters.includes('Patterson') && item.where === ('Patterson')) ||
-    (filters.includes('Pierpont') && item.where === ('Pierpont')) ||
-    (filters.includes('Prince') && item.where === ('Prince')) ||
-    (filters.includes('Thoreau') && item.where === ('Thoreau')) ||
-    (filters.includes('Washington') && item.where === ('Washington')) ||
+    (filters.includes('Cance') && item.location === ('Cance')) ||
+    (filters.includes('Coolidge') && item.location === ('Coolidge')) ||
+    (filters.includes('Crampton') && item.location === ('Crampton')) ||
+    (filters.includes('Emerson') && item.location === ('Emerson')) ||
+    (filters.includes('James') && item.location === ('James')) ||
+    (filters.includes('John Adams') && item.location === ('John Adams')) ||
+    (filters.includes('JQA') && item.location === ('JQA')) ||
+    (filters.includes('Kennedy') && item.location === ('Kennedy')) ||
+    (filters.includes('MacKimmie') && item.location === ('MacKimmie')) ||
+    (filters.includes('Melville') && item.location === ('Melville')) ||
+    (filters.includes('Moore') && item.location === ('Moore')) ||
+    (filters.includes('Patterson') && item.location === ('Patterson')) ||
+    (filters.includes('Pierpont') && item.location === ('Pierpont')) ||
+    (filters.includes('Prince') && item.location === ('Prince')) ||
+    (filters.includes('Thoreau') && item.location === ('Thoreau')) ||
+    (filters.includes('Washington') && item.location === ('Washington')) ||
 
-    (filters.includes('Brown') && item.where === ('Brown')) ||
-    (filters.includes('Cashin') && item.where === ('Cashin')) ||
-    (filters.includes('McNamara') && item.where === ('McNamara')) ||
+    (filters.includes('Brown') && item.location === ('Brown')) ||
+    (filters.includes('Cashin') && item.location === ('Cashin')) ||
+    (filters.includes('McNamara') && item.location === ('McNamara')) ||
 
-    (filters.includes('Fine Arts Center') && item.where === ('Fine Arts Center')) ||
-    (filters.includes('Rec Center') && item.where === ('Rec Center')) ||
-    (filters.includes('Mullins Center') && item.where === ('Mullins Center')) ||
-    (filters.includes('University Health Services') && item.where === ('University Health Services')) ||
-    (filters.includes('Champions Center') && item.where === ('Champions Center')) ||
-    (filters.includes('Visitors Center') && item.where === ('Visitors Center')) ||
+    (filters.includes('Fine Arts Center') && item.location === ('Fine Arts Center')) ||
+    (filters.includes('Rec Center') && item.location === ('Rec Center')) ||
+    (filters.includes('Mullins Center') && item.location === ('Mullins Center')) ||
+    (filters.includes('University Health Services') && item.location === ('University Health Services')) ||
+    (filters.includes('Champions Center') && item.location === ('Champions Center')) ||
+    (filters.includes('Visitors Center') && item.location === ('Visitors Center')) ||
 
-    (filters.includes('ILC') && item.where === ('ILC')) ||
-    (filters.includes('Hasbrouck') && item.where === ('Hasbrouck')) ||
-    (filters.includes('Gordon') && item.where === ('Gordon')) ||
-    (filters.includes('Crotty') && item.where === ('Crotty')) ||
-    (filters.includes('Mahar') && item.where === ('Mahar')) ||
-    (filters.includes('Isenberg') && item.where === ('Isenberg')) ||
-    (filters.includes('Bromery') && item.where === ('Bromery')) ||
-    (filters.includes('Herter') && item.where === ('Herter')) ||
-    (filters.includes('Hasbrouck') && item.where === ('Hasbrouck')) ||
-    (filters.includes('Curry Hicks') && item.where === ('Curry Hicks')) ||
-    (filters.includes('Bartlett') && item.where === ('Bartlett')) ||
-    (filters.includes('Tobin') && item.where === ('Tobin')) ||
-    (filters.includes('Dickinson') && item.where === ('Dickinson')) ||
-    (filters.includes('South College') && item.where === ('South College')) ||
-    (filters.includes('Thompson') && item.where === ('Thompson')) ||
-    (filters.includes('Machmer') && item.where === ('Machmer')) ||
-    (filters.includes('Du Bois') && item.where === ('Du Bois')) ||
-    (filters.includes('Studio Arts') && item.where === ('Studio Arts')) ||
-    (filters.includes('Oliver') && item.where === ('Oliver')) ||
-    (filters.includes('Fernald') && item.where === ('Fernald')) ||
-    (filters.includes('Morrill') && item.where === ('Morrill')) ||
-    (filters.includes('Clark') && item.where === ('Clark')) ||
-    (filters.includes('Wilder') && item.where === ('Wilder')) ||
-    (filters.includes('Skinner') && item.where === ('Skinner')) ||
-    (filters.includes('Life Sciences') && item.where === ('Life Sciences')) ||
-    (filters.includes('ISC') && item.where === ('ISC')) ||
-    (filters.includes('Goessman') && item.where === ('Goessman')) ||
-    (filters.includes('Physical Sciences') && item.where === ('Physical Sciences')) ||
-    (filters.includes('LGRC') && item.where === ('LGRC')) ||
-    (filters.includes('Marcus') && item.where === ('Marcus')) ||
-    (filters.includes('Marston') && item.where === ('Marston')) ||
-    (filters.includes('Knowles') && item.where === ('Knowles')) ||
-    (filters.includes('Gunness') && item.where === ('Gunness')) ||
-    (filters.includes('Astronomy') && item.where === ('Astronomy')) ||
-    (filters.includes('CS Building') && item.where === ('CS Building')) ||
-    (filters.includes('Engineering Lab') && item.where === ('Engineering Lab')) ||
-    (filters.includes('Furcolo') && item.where === ('Furcolo')) ||
-    (filters.includes('Montague') && item.where === ('Montague')) ||
-    (filters.includes('Totman') && item.where === ('Totman')) ||
-    (filters.includes('Stockbridge') && item.where === ('Stockbridge')) ||
-    (filters.includes('Flint') && item.where === ('Flint'))) &&
-    item.itemName.toLowerCase().includes(search.toLowerCase())
+    (filters.includes('ILC') && item.location === ('ILC')) ||
+    (filters.includes('Hasbrouck') && item.location === ('Hasbrouck')) ||
+    (filters.includes('Gordon') && item.location === ('Gordon')) ||
+    (filters.includes('Crotty') && item.location === ('Crotty')) ||
+    (filters.includes('Mahar') && item.location === ('Mahar')) ||
+    (filters.includes('Isenberg') && item.location === ('Isenberg')) ||
+    (filters.includes('Bromery') && item.location === ('Bromery')) ||
+    (filters.includes('Herter') && item.location === ('Herter')) ||
+    (filters.includes('Johnson') && item.location === ('Johnson')) ||
+    (filters.includes('Curry Hicks') && item.location === ('Curry Hicks')) ||
+    (filters.includes('Bartlett') && item.location === ('Bartlett')) ||
+    (filters.includes('Tobin') && item.location === ('Tobin')) ||
+    (filters.includes('Dickinson') && item.location === ('Dickinson')) ||
+    (filters.includes('South College') && item.location === ('South College')) ||
+    (filters.includes('Thompson') && item.location === ('Thompson')) ||
+    (filters.includes('Machmer') && item.location === ('Machmer')) ||
+    (filters.includes('Du Bois') && item.location === ('Du Bois')) ||
+    (filters.includes('Studio Arts') && item.location === ('Studio Arts')) ||
+    (filters.includes('Oliver') && item.location === ('Oliver')) ||
+    (filters.includes('Fernald') && item.location === ('Fernald')) ||
+    (filters.includes('Morrill') && item.location === ('Morrill')) ||
+    (filters.includes('Clark') && item.location === ('Clark')) ||
+    (filters.includes('Wilder') && item.location === ('Wilder')) ||
+    (filters.includes('Skinner') && item.location === ('Skinner')) ||
+    (filters.includes('Life Sciences') && item.location === ('Life Sciences')) ||
+    (filters.includes('ISC') && item.location === ('ISC')) ||
+    (filters.includes('Goessman') && item.location === ('Goessman')) ||
+    (filters.includes('Physical Sciences') && item.location === ('Physical Sciences')) ||
+    (filters.includes('LGRC') && item.location === ('LGRC')) ||
+    (filters.includes('Marcus') && item.location === ('Marcus')) ||
+    (filters.includes('Marston') && item.location === ('Marston')) ||
+    (filters.includes('Knowles') && item.location === ('Knowles')) ||
+    (filters.includes('Gunness') && item.location === ('Gunness')) ||
+    (filters.includes('Astronomy') && item.location === ('Astronomy')) ||
+    (filters.includes('CS Building') && item.location === ('CS Building')) ||
+    (filters.includes('Engineering Lab') && item.location === ('Engineering Lab')) ||
+    (filters.includes('Furcolo') && item.location === ('Furcolo')) ||
+    (filters.includes('Montague') && item.location === ('Montague')) ||
+    (filters.includes('Totman') && item.location === ('Totman')) ||
+    (filters.includes('Stockbridge') && item.location === ('Stockbridge')) ||
+    (filters.includes('Lederle') && item.location === ('Lederle')) ||
+    (filters.includes('Flint') && item.location === ('Flint'))) &&
+    item.name.toLowerCase().includes(search.toLowerCase())
     ),
-  };
+};
+
+const filter = () => {
+}
   return (
     <>
     <div className = "filter">
@@ -326,9 +355,9 @@ const LostTable = () => {
               control = 
               { <Checkbox 
                 defaultChecked
-                checked = {filters.includes('Hasbrouck')}
-                onChange = {() => handleFilter('Hasbrouck')} /> } 
-                label = 'Hasbrouck' />
+                checked = {filters.includes('Johnson')}
+                onChange = {() => handleFilter('Johnson')} /> } 
+                label = 'Johnson' />
             <FormControlLabel
               control = 
               { <Checkbox 
@@ -410,7 +439,7 @@ const LostTable = () => {
               control = 
               { <Checkbox 
                 defaultChecked
-                checked = {filters.includes('Morriil')}
+                checked = {filters.includes('Morrill')}
                 onChange = {() => handleFilter('Morrill')} /> } 
                 label = 'Morrill' />
             <FormControlLabel
@@ -529,7 +558,7 @@ const LostTable = () => {
               control = 
               { <Checkbox 
                 defaultChecked
-                checked = {filters.includes('Montagaue')}
+                checked = {filters.includes('Montague')}
                 onChange = {() => handleFilter('Montague')} /> } 
                 label = 'Montague' />
             <FormControlLabel
@@ -553,6 +582,13 @@ const LostTable = () => {
                 checked = {filters.includes('Flint')}
                 onChange = {() => handleFilter('Flint')} /> } 
                 label = 'Flint' />
+            <FormControlLabel
+              control = 
+              { <Checkbox 
+                defaultChecked
+                checked = {filters.includes('Lederle')}
+                onChange = {() => handleFilter('Lederle')} /> } 
+                label = 'Lederle' />
           </FormGroup>
            ) : null}
       <Button
@@ -1032,11 +1068,11 @@ const LostTable = () => {
         </Header>
         <Body>
           {tableList.map((item) => (
-            <Row key = {item.id} item = {item}>
-              <Cell>{item.itemName}</Cell>
+            <Row key = {item.id}>
+              <Cell>{item.item}</Cell>
               <Cell>{item.name}</Cell>
-              <Cell>{item.where}</Cell>
-              <Cell>{item.contact}</Cell>
+              <Cell>{item.location}</Cell>
+              <Cell>{item.email}</Cell>
                 </Row>
               ))}
             </Body>

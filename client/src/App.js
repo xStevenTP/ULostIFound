@@ -4,9 +4,7 @@ import HomePage from "./HomePage.js";
 
 const App = () => {
   return (
-    <section>
-      <HomePage />
-    </section>
+    <LostTable />
   );
 };
 
