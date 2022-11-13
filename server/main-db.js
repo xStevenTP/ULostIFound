@@ -38,13 +38,19 @@ export class MainDatabase {
     var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
     today = mm + '/' + dd + '/' + yyyy;
+    var status = 'found';
     console.log(item)
-    await this.foundCollection.insertOne({item, description, name, email, location, today})
+    await this.foundCollection.insertOne({item, description, name, email, location, today, status})
   }
 
   // read all found from the found collection
   async readAllFound() {
     const res = await this.foundCollection.find({}).toArray();
+    return res;
+  }
+
+  async readFoundBuilding(building) {
+    const res = await this.foundCollection.find({location:building}).toArray()
     return res;
   }
 
@@ -59,12 +65,18 @@ export class MainDatabase {
     var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
     today = mm + '/' + dd + '/' + yyyy;
-    await this.lostCollection.insertOne({item, description, name, email, location, today})
+    var status = "lost";
+    await this.lostCollection.insertOne({item, description, name, email, location, today, status})
   }
 
   // read all lost from the lost collection
   async readAllLost() {
     const res = await this.lostCollection.find({}).toArray();
+    return res;
+  }
+
+  async readLostBuilding(building) {
+    const res = await this.lostCollection.find({location:building}).toArray();
     return res;
   }
 

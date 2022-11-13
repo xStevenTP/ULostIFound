@@ -110,7 +110,7 @@ const LostTable = () => {
     'Visitors Center', 'Whitmore', 'Webster', 'Wheeler',
     'Worcester', 'Isenberg', 'Crotty', 'Gordon', 'Bromery', 'Curry Hicks',
     'Tobin', 'Machmer', 'Du Bois', 'Oliver', 'Fernald', 'Wilder', 'Skinner',
-    'ISC', 'ILC', 'LGRC', 'Astronomy', 'Furcolo', 'Montague', 'Totman', 'Stockbridge',
+    'ISB', 'ILC', 'LGRC', 'Astronomy', 'Furcolo', 'Montague', 'Totman', 'Stockbridge',
     'Linden', 'Maple', 'Field', 'Cance', 'Crampton', 'James',
     'John Adams', 'MacKimmie', 'Melville', 'Pierpont', 'Prince',
     'Washington', 'Brown', 'Cashin', 'Rec Center']);
@@ -474,9 +474,9 @@ const filter = () => {
               control = 
               { <Checkbox 
                 defaultChecked
-                checked = {filters.includes('ISC')}
-                onChange = {() => handleFilter('ISC')} /> } 
-                label = 'ISC' />
+                checked = {filters.includes('ISB')}
+                onChange = {() => handleFilter('ISB')} /> } 
+                label = 'ISB' />
             <FormControlLabel
               control = 
               { <Checkbox 
