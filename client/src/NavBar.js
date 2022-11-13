@@ -75,6 +75,7 @@ function Navbar() {
             <div class="popup-body">
               <label for="fname">Location Found: </label>
               <select name="buildings" id="build">
+                <option value="empty"></option>
                 <option value="baker">Baker</option>
                 <option value="barlett">Bartlett</option>
                 <option value="berkshire">Berkshire</option>
@@ -238,6 +239,7 @@ function Navbar() {
             <div class="popup-body1">
               <label for="fname">Location Lost: </label>
               <select name="buildings" id="build">
+                <option value="empty"></option>
                 <option value="baker">Baker</option>
                 <option value="barlett">Bartlett</option>
                 <option value="berkshire">Berkshire</option>
