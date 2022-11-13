@@ -1,14 +1,19 @@
 import LostTable from "./LostTable.js";
-import Navbar from "./NavBar.js";
-import NavbarMap from "./NavBarMap.js";
 import HomePage from "./HomePage.js";
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
 
 const App = () => {
   return (
-    <section>
-      <Navbar />
-      <LostTable />
-    </section>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path='/' element={<HomePage />} />
+        <Route path='/table' element={<LostTable />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
