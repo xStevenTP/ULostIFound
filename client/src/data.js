@@ -288,10 +288,6 @@ export const locationData = [
         coorindate: [42.384907768075486, -72.52208374033053]
     },
     {
-        location: "Bromery",
-        coorindate: [42.38798384836683, -72.52589678383153]
-    },
-    {
         location: "Curry Hicks",
         coorindate: [42.38719560994231, -72.52833392203294]
     },
