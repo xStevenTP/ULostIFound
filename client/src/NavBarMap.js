@@ -149,7 +149,6 @@ function NavbarMap() {
                 <option value="Bromery">Bromery</option>
                 <option value="Tobin">Tobin</option>
                 <option value="Machmer">Machmer</option>
-                <option value="Du Bois">Du Bois</option>
                 <option value="Oliver">Oliver</option>
                 <option value="Fernald">Fernald</option>
                 <option value="ISB">ISB</option>
@@ -313,7 +312,6 @@ function NavbarMap() {
                 <option value="Bromery">Bromery</option>
                 <option value="Tobin">Tobin</option>
                 <option value="Machmer">Machmer</option>
-                <option value="Du Bois">Du Bois</option>
                 <option value="Oliver">Oliver</option>
                 <option value="Fernald">Fernald</option>
                 <option value="ISB">ISB</option>
