@@ -49,19 +49,19 @@ input[type="submit"] {
   padding: 10px 20px;
   width: 100px;
 }
-/* input[type="submit-perf-rev"] {
-    margin-top: 10px;
-    cursor: pointer;
-    font-size: 12px;
-    background: #971b2f;
-    border: 1px solid #971b2f;
-    border-radius: 6px;
-    color: rgb(255, 255, 255);
-    padding: 5px 5px;
-    width: 45px;
-  } */
+/* /* input[type="submit-perf-rev"] {
+      margin-top: 10px;
+      cursor: pointer;
+      font-size: 12px;
+      background: #971b2f;
+      border: 1px solid #971b2f;
+      border-radius: 6px;
+      color: rgb(255, 255, 255);
+      padding: 5px 5px;
+      width: 45px;
+    } */
 
-.input-container {
+/* .input-container {
   width: 200px;
   margin: 0 auto;
   display: flex;
@@ -159,4 +159,4 @@ input[type="text"] {
 .overlay:target {
   visibility: visible;
   opacity: 1;
-}
+} */

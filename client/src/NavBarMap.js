@@ -1,29 +1,28 @@
 import React, { useState, useEffect } from "react";
-import "./NavBar.css";
-import axios from 'axios';
+import "./NavBarMap.css";
+import axios from "axios";
 
-function Navbar() {
-  const [item, setItem] = React.useState('');
-  const [description, setDescription] = React.useState('');
-  const [name, setName] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [location, setLocation] = React.useState('');
+function NavbarMap() {
+  const [item, setItem] = React.useState("");
+  const [description, setDescription] = React.useState("");
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [location, setLocation] = React.useState("");
 
   const onSubmit = async (event) => {
-
     await axios.post(`http://localhost:8080/found/create`, {
       item,
       description,
       name,
       email,
-      location
+      location,
     });
 
-    setItem('');
-    setDescription('');
-    setName('');
-    setEmail('');
-    setLocation('');
+    setItem("");
+    setDescription("");
+    setName("");
+    setEmail("");
+    setLocation("");
   };
 
   return (
@@ -31,6 +30,9 @@ function Navbar() {
       <div className="middle">
         <a class="button" href="#popup1">
           <center>I FOUND</center>
+        </a>
+        <a class="button" href="page2">
+          <center>I LOST</center>
         </a>
       </div>
 
@@ -95,7 +97,7 @@ function Navbar() {
               <p></p>
             </div>
             <div className="submit-button">
-              <button className="btn btn-primary">Submit</button>
+              <button>Submit</button>
             </div>
             <a class="close" href="#">
               &times;
@@ -107,4 +109,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavbarMap;

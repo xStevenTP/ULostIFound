@@ -1,13 +1,15 @@
-import React from 'react';
-import { Table,
-         Header,
-         HeaderRow,
-         HeaderCell,
-         Body,
-         Row,
-         Cell,
-        } from '@table-library/react-table-library';
+import React from "react";
+import {
+  Table,
+  Header,
+  HeaderRow,
+  HeaderCell,
+  Body,
+  Row,
+  Cell,
+} from "@table-library/react-table-library";
 
+<<<<<<< HEAD
 import { useTheme }  from '@table-library/react-table-library/theme';
 import { FormControlLabel, FormGroup, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
@@ -16,6 +18,11 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import './LostTable.css';
 import { textAlign } from '@mui/system';
+=======
+import { useTheme } from "@table-library/react-table-library/theme";
+import { TextField } from "@mui/material";
+import "./LostTable.css";
+>>>>>>> a938194d686686ea41bfe980bf8f0f4af0f4169c
 
 const THEME = {
   Table: `
@@ -25,8 +32,13 @@ const THEME = {
     `,
   HeaderRow: `
     padding: 50px;
+<<<<<<< HEAD
     font-size: 20px;
     background-color: red;
+=======
+    font-size: 14px;
+    background-color: #a92d42;
+>>>>>>> a938194d686686ea41bfe980bf8f0f4af0f4169c
     text-align: center;
     border: 1px solid black;
     `,
@@ -37,33 +49,41 @@ const THEME = {
     font-size: 16px;
     text-align: center;
     border: 1px solid black;
-    `
+    `,
 };
 
 
 const list = [
   {
-    itemName: 'Airpods',
-    name: 'Steven',
-    where: 'ILC',
-    contact: 'steven@gmail.com',
+    itemName: "Airpods",
+    name: "Steven",
+    where: "ILC",
+    contact: "steven@gmail.com",
   },
   {
-    itemName: 'ID',
-    name: 'Jason',
-    where: 'Hasbrouck',
-    contact: 'jason@gmail.com',
+    itemName: "ID",
+    name: "Jason",
+    where: "Hasbrouck",
+    contact: "jason@gmail.com",
   },
   {
+<<<<<<< HEAD
     itemName: 'Card',
     name: 'Jasmine',
     where: 'Engineering Lab',
     contact: 'jasmine@gmail.com',
+=======
+    itemName: "Card",
+    name: "Jasmine",
+    where: "Engineering",
+    contact: "jasmine@gmail.com",
+>>>>>>> a938194d686686ea41bfe980bf8f0f4af0f4169c
   },
 ];
 
 const LostTable = () => {
   const theme = useTheme(THEME);
+<<<<<<< HEAD
   const [filters, setFilters] = React.useState([
     'Baker', 'Bartlett', 'Berkshire', 'Birch',
     'Bowditch', 'Boyden', 'Brett', 'Brooks', 'Butterfield',
@@ -136,6 +156,10 @@ const LostTable = () => {
   const handleOpenOthers = () => {
     setOpenOthers(!openOthers);
   }
+=======
+  const [filters, setFilters] = React.useState(["ILC"]);
+  const [search, setSearch] = React.useState("");
+>>>>>>> a938194d686686ea41bfe980bf8f0f4af0f4169c
 
   const handleSearch = (event) => {
     setSearch(event.target.value);
@@ -143,11 +167,12 @@ const LostTable = () => {
 
   const handleFilter = (filter) => {
     filters.includes(filter)
-    ? setFilters(filters.filter((value) => value !== filter))
-    : setFilters(filters.concat(filter));
+      ? setFilters(filters.filter((value) => value !== filter))
+      : setFilters(filters.concat(filter));
   };
 
   const data = {
+<<<<<<< HEAD
     nodes: list.filter((item) => 
     ((filters.includes('Worcester') && item.where === ('Worcester')) ||
     (filters.includes('Hampshire') && item.where === ('Hampshire')) ||
@@ -255,10 +280,18 @@ const LostTable = () => {
     (filters.includes('Stockbridge') && item.where === ('Stockbridge')) ||
     (filters.includes('Flint') && item.where === ('Flint'))) &&
     item.itemName.toLowerCase().includes(search.toLowerCase())
+=======
+    nodes: list.filter(
+      (item) =>
+        filters.includes("ILC") &&
+        item.where === "ILC" &&
+        item.itemName.toLowerCase().includes(search.toLowerCase())
+>>>>>>> a938194d686686ea41bfe980bf8f0f4af0f4169c
     ),
   };
   return (
     <>
+<<<<<<< HEAD
     <div className = "filter">
       <Button
         onClick = {handleOpenAcademic}
@@ -1036,12 +1069,51 @@ const LostTable = () => {
               <Cell>{item.name}</Cell>
               <Cell>{item.where}</Cell>
               <Cell>{item.contact}</Cell>
+=======
+      <div className="filter">
+        <label htmlFor="location">
+          Include ILC:
+          <input
+            id="ILC"
+            type="checkbox"
+            checked={filters.includes("ILC")}
+            onChange={() => handleFilter("ILC")}
+          />
+        </label>
+      </div>
+      <div className="search">
+        <TextField
+          id="filled-basic"
+          fullWidth
+          label="Search by item name"
+          onChange={handleSearch}
+        />
+      </div>
+      <Table data={data} theme={theme}>
+        {(tableList) => (
+          <>
+            <Header>
+              <HeaderRow>
+                <HeaderCell>Item Name</HeaderCell>
+                <HeaderCell>Personal Name</HeaderCell>
+                <HeaderCell>Where</HeaderCell>
+                <HeaderCell>Contact</HeaderCell>
+              </HeaderRow>
+            </Header>
+            <Body>
+              {tableList.map((item) => (
+                <Row key={item.id} item={item}>
+                  <Cell>{item.itemName}</Cell>
+                  <Cell>{item.name}</Cell>
+                  <Cell>{item.where}</Cell>
+                  <Cell>{item.contact}</Cell>
+>>>>>>> a938194d686686ea41bfe980bf8f0f4af0f4169c
                 </Row>
-                ))}
-        </Body>
-        </>
-      )}
-    </Table>
+              ))}
+            </Body>
+          </>
+        )}
+      </Table>
     </>
   );
 };
