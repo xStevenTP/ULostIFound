@@ -4,7 +4,6 @@ import Navbar from "./NavBar.js";
 const App = () => {
   return (
     <section>
-      <Navbar />
       <LostTable />
     </section>
   );

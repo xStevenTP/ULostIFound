@@ -1,4 +1,12 @@
 .search {
-    width: 30%;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
     padding: 10px;
   }
+
+.filter {
+  text-align: center;
+  float: right;
+}
