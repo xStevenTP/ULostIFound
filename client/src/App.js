@@ -1,10 +1,9 @@
 import LostTable from "./LostTable.js";
-import Navbar from "./NavBar.js";
+import NavbarMap from "./NavBarMap.js";
 
 const App = () => {
   return (
     <section>
-      <Navbar />
       <LostTable />
     </section>
   );
