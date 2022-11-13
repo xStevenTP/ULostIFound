@@ -1417,30 +1417,32 @@ const LostTable = () => {
           onChange={handleSearch}
         />
       </div>
-      <Table data={data} theme={theme}>
-        {(tableList) => (
-          <>
-            <Header>
-              <HeaderRow>
-                <HeaderCell>Item Name</HeaderCell>
-                <HeaderCell>Personal Name</HeaderCell>
-                <HeaderCell>Where</HeaderCell>
-                <HeaderCell>Contact</HeaderCell>
-              </HeaderRow>
-            </Header>
-            <Body>
-              {tableList.map((item) => (
-                <Row key={item.id} item={item}>
-                  <Cell>{item.itemName}</Cell>
-                  <Cell>{item.name}</Cell>
-                  <Cell>{item.where}</Cell>
-                  <Cell>{item.contact}</Cell>
-                </Row>
-              ))}
-            </Body>
-          </>
-        )}
-      </Table>
+      <div className="table">
+        <Table data={data} theme={theme}>
+          {(tableList) => (
+            <>
+              <Header>
+                <HeaderRow>
+                  <HeaderCell>Item Name</HeaderCell>
+                  <HeaderCell>Personal Name</HeaderCell>
+                  <HeaderCell>Where</HeaderCell>
+                  <HeaderCell>Contact</HeaderCell>
+                </HeaderRow>
+              </Header>
+              <Body>
+                {tableList.map((item) => (
+                  <Row key={item.id} item={item}>
+                    <Cell>{item.itemName}</Cell>
+                    <Cell>{item.name}</Cell>
+                    <Cell>{item.where}</Cell>
+                    <Cell>{item.contact}</Cell>
+                  </Row>
+                ))}
+              </Body>
+            </>
+          )}
+        </Table>
+      </div>
     </>
   );
 };
