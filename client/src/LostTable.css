@@ -1,6 +1,5 @@
 .search {
-  margin-left: 10%;
-  width: 20%;
+  width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,11 +14,15 @@
 .box {
   border: 5px solid #971b2f;
   background-color: lightgray;
-  padding: 40px;
   margin-top: 7%;
   width: 250px;
   height: 500px;
   margin-right: 1%;
   float: right;
   overflow: auto;
+}
+.table {
+  width: 83%;
+  display: flex;
+  position: relative;
 }

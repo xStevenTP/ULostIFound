@@ -185,8 +185,7 @@ const LostTable = () => {
           (filters.includes("Baker") && item.location === "Baker") ||
           (filters.includes("Brett") && item.location === "Brett") ||
           (filters.includes("Brooks") && item.location === "Brooks") ||
-          (filters.includes("Butterfield") &&
-            item.location === "Butterfield") ||
+          (filters.includes("Butterfield") && item.location === "Butterfield") ||
           (filters.includes("Chadbourne") && item.location === "Chadbourne") ||
           (filters.includes("Gorman") && item.location === "Gorman") ||
           (filters.includes("Greenough") && item.location === "Greenough") ||
@@ -229,17 +228,12 @@ const LostTable = () => {
           (filters.includes("Brown") && item.location === "Brown") ||
           (filters.includes("Cashin") && item.location === "Cashin") ||
           (filters.includes("McNamara") && item.location === "McNamara") ||
-          (filters.includes("Fine Arts Center") &&
-            item.location === "Fine Arts Center") ||
+          (filters.includes("Fine Arts Center") && item.location === "Fine Arts Center") ||
           (filters.includes("Rec Center") && item.location === "Rec Center") ||
-          (filters.includes("Mullins Center") &&
-            item.location === "Mullins Center") ||
-          (filters.includes("University Health Services") &&
-            item.location === "University Health Services") ||
-          (filters.includes("Champions Center") &&
-            item.location === "Champions Center") ||
-          (filters.includes("Visitors Center") &&
-            item.location === "Visitors Center") ||
+          (filters.includes("Mullins Center") && item.location === "Mullins Center") ||
+          (filters.includes("University Health Services") && item.location === "University Health Services") ||
+          (filters.includes("Champions Center") && item.location === "Champions Center") ||
+          (filters.includes("Visitors Center") && item.location === "Visitors Center") ||
           (filters.includes("ILC") && item.location === "ILC") ||
           (filters.includes("Hasbrouck") && item.location === "Hasbrouck") ||
           (filters.includes("Gordon") && item.location === "Gordon") ||
@@ -249,45 +243,37 @@ const LostTable = () => {
           (filters.includes("Bromery") && item.location === "Bromery") ||
           (filters.includes("Herter") && item.location === "Herter") ||
           (filters.includes("Johnson") && item.location === "Johnson") ||
-          (filters.includes("Curry Hicks") &&
-            item.location === "Curry Hicks") ||
+          (filters.includes("Curry Hicks") && item.location === "Curry Hicks") ||
           (filters.includes("Bartlett") && item.location === "Bartlett") ||
           (filters.includes("Tobin") && item.location === "Tobin") ||
           (filters.includes("Dickinson") && item.location === "Dickinson") ||
-          (filters.includes("South College") &&
-            item.location === "South College") ||
+          (filters.includes("South College") && item.location === "South College") ||
           (filters.includes("Thompson") && item.location === "Thompson") ||
           (filters.includes("Machmer") && item.location === "Machmer") ||
           (filters.includes("Du Bois") && item.location === "Du Bois") ||
-          (filters.includes("Studio Arts") &&
-            item.location === "Studio Arts") ||
+          (filters.includes("Studio Arts") && item.location === "Studio Arts") ||
           (filters.includes("Oliver") && item.location === "Oliver") ||
           (filters.includes("Fernald") && item.location === "Fernald") ||
           (filters.includes("Morrill") && item.location === "Morrill") ||
           (filters.includes("Clark") && item.location === "Clark") ||
           (filters.includes("Wilder") && item.location === "Wilder") ||
           (filters.includes("Skinner") && item.location === "Skinner") ||
-          (filters.includes("Life Sciences") &&
-            item.location === "Life Sciences") ||
+          (filters.includes("Life Sciences") && item.location === "Life Sciences") ||
           (filters.includes("ISC") && item.location === "ISC") ||
           (filters.includes("Goessman") && item.location === "Goessman") ||
-          (filters.includes("Physical Sciences") &&
-            item.location === "Physical Sciences") ||
+          (filters.includes("Physical Sciences") && item.location === "Physical Sciences") ||
           (filters.includes("LGRC") && item.location === "LGRC") ||
           (filters.includes("Marcus") && item.location === "Marcus") ||
           (filters.includes("Marston") && item.location === "Marston") ||
           (filters.includes("Knowles") && item.location === "Knowles") ||
           (filters.includes("Gunness") && item.location === "Gunness") ||
           (filters.includes("Astronomy") && item.location === "Astronomy") ||
-          (filters.includes("CS Building") &&
-            item.location === "CS Building") ||
-          (filters.includes("Engineering Lab") &&
-            item.location === "Engineering Lab") ||
+          (filters.includes("CS Building") && item.location === "CS Building") ||
+          (filters.includes("Engineering Lab") && item.location === "Engineering Lab") ||
           (filters.includes("Furcolo") && item.location === "Furcolo") ||
           (filters.includes("Montague") && item.location === "Montague") ||
           (filters.includes("Totman") && item.location === "Totman") ||
-          (filters.includes("Stockbridge") &&
-            item.location === "Stockbridge") ||
+          (filters.includes("Stockbridge") && item.location === "Stockbridge") ||
           (filters.includes("Lederle") && item.location === "Lederle") ||
           (filters.includes("Flint") && item.location === "Flint")) &&
         item.name.toLowerCase().includes(search.toLowerCase())
@@ -1344,15 +1330,17 @@ const LostTable = () => {
                   <HeaderCell>Personal Name</HeaderCell>
                   <HeaderCell>Where</HeaderCell>
                   <HeaderCell>Contact</HeaderCell>
+                  <HeaderCell>Status</HeaderCell>
                 </HeaderRow>
               </Header>
               <Body>
                 {tableList.map((item) => (
                   <Row key={item.id} item={item}>
-                    <Cell>{item.itemName}</Cell>
+                    <Cell>{item.item}</Cell>
                     <Cell>{item.name}</Cell>
-                    <Cell>{item.where}</Cell>
-                    <Cell>{item.contact}</Cell>
+                    <Cell>{item.location}</Cell>
+                    <Cell>{item.email}</Cell>
+                    <Cell>{item.status}</Cell>
                   </Row>
                 ))}
               </Body>

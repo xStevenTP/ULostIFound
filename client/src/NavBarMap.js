@@ -97,7 +97,9 @@ function NavbarMap() {
             </div>
             <div class="popup-body">
               <label for="fname">Location Found: </label>
-              <select name="buildings" id="build">
+              <select name="buildings" id="build"
+                value = {location}
+                onChange = {(e) => setLocation(e.target.value)}>
                 <option value="empty"></option>
                 <option value="Baker">Baker</option>
                 <option value="Bartlett">Bartlett</option>
@@ -260,7 +262,9 @@ function NavbarMap() {
             </div>
             <div class="popup-body1">
               <label for="fname">Location Lost: </label>
-              <select name="buildings" id="build">
+              <select name="buildings" id="build"
+                value = {location}
+                onChange = {(e) => setLocation(e.target.value)}>
                 <option value="empty"></option>
                 <option value="Baker">Baker</option>
                 <option value="Bartlett">Bartlett</option>
