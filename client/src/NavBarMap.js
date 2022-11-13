@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./NavBar.css";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 function NavbarMap() {
   const [item, setItem] = React.useState("");
@@ -49,15 +50,19 @@ function NavbarMap() {
         </h2>
       </div>
       <div className="middle">
+        <Link to="/" class="button">
+          <center>HOME</center>
+        </Link>
         <a class="button" href="#popup1">
           <center>I FOUND</center>
         </a>
         <a class="button" href="#popup2">
           <center>I LOST</center>
         </a>
-        <a class="button" href="#popup3">
+        <Link to="/table" class="button">
           <center>LOST N FOUND</center>
-        </a>
+        </Link>
+
       </div>
 
       <div classname="TypeOfPage"></div>
