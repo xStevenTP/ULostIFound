@@ -70,19 +70,23 @@ const LostTable = () => {
 
   const [list, setList] = React.useState([]);
   
-  const url = `http://localhost:8080/found/all`;
+  const foundUrl = `http://localhost:8080/found/all`;
+  const lostUrl = 'http://localhost:8080/lost/all';
 
   useEffect(() => {
     getData();
   }, []);
 
   const getData = () => {
-      axios.get(url)
-      .then((response) => {
-        setList(response.data);
-        console.log(response.data);
-        console.log(list);
-      })
+    axios.all([
+      axios.get(foundUrl),
+      axios.get(lostUrl)
+    ])
+      .then(axios.spread(function (found, lost) {
+        const totalItems = found.data.concat(lost.data);
+        console.log(totalItems);
+        setList(totalItems);
+      }))
       .catch(error => console.error((`Error: ${error}`)))
   }
 
@@ -100,7 +104,7 @@ const LostTable = () => {
     'Grinnell', 'Grayson', 'Gunness', 'Haigis',
     'Hampshire', 'Hasbrouck', 'Herter', 'Hamlin',
     'JQA', 'Johnson', 'Kennedy', 'Knowles', 'Knowlton',
-    'Lederle', 'Life Sciences', 'Lorden', 'Mahar', 'Lewis',
+    'lederle', 'Life Sciences', 'Lorden', 'Mahar', 'Lewis',
     'Marcus', 'Marston', 'McNamara', 'Memorial Hall',
     'Moore', 'Morrill', 'Mullins Center', 'Mary Lyon',
     'Oak', 'Paige', 'Patterson', 'Physical Sciences', 'Robotics',
@@ -279,7 +283,7 @@ const LostTable = () => {
     (filters.includes('Montague') && item.location === ('Montague')) ||
     (filters.includes('Totman') && item.location === ('Totman')) ||
     (filters.includes('Stockbridge') && item.location === ('Stockbridge')) ||
-    (filters.includes('Lederle') && item.location === ('Lederle')) ||
+    (filters.includes('lederle') && item.location === ('lederle')) ||
     (filters.includes('Flint') && item.location === ('Flint'))) &&
     item.name.toLowerCase().includes(search.toLowerCase())
     ),
@@ -586,9 +590,9 @@ const filter = () => {
               control = 
               { <Checkbox 
                 defaultChecked
-                checked = {filters.includes('Lederle')}
-                onChange = {() => handleFilter('Lederle')} /> } 
-                label = 'Lederle' />
+                checked = {filters.includes('lederle')}
+                onChange = {() => handleFilter('lederle')} /> } 
+                label = 'lederle' />
           </FormGroup>
            ) : null}
       <Button
@@ -1064,6 +1068,7 @@ const filter = () => {
             <HeaderCell>Personal Name</HeaderCell>
             <HeaderCell>Where</HeaderCell>
             <HeaderCell>Contact</HeaderCell>
+            <HeaderCell>Status</HeaderCell>
           </HeaderRow>
         </Header>
         <Body>
@@ -1073,6 +1078,7 @@ const filter = () => {
               <Cell>{item.name}</Cell>
               <Cell>{item.location}</Cell>
               <Cell>{item.email}</Cell>
+              <Cell>{item.status}</Cell>
                 </Row>
               ))}
             </Body>
