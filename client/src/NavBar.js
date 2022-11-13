@@ -10,8 +10,24 @@ function Navbar() {
   const [email, setEmail] = React.useState("");
   const [location, setLocation] = React.useState("");
 
-  const onSubmit = async (event) => {
+  const onSubmitFound = async (event) => {
     await axios.post(`http://localhost:8080/found/create`, {
+      item,
+      description,
+      name,
+      email,
+      location,
+    });
+
+    setItem("");
+    setDescription("");
+    setName("");
+    setEmail("");
+    setLocation("");
+  };
+  
+  const onSubmitLost = async (event) => {
+    await axios.post(`http://localhost:8080/lost/create`, {
       item,
       description,
       name,
@@ -51,7 +67,7 @@ function Navbar() {
           <a class="close" href="#">
             &times;
           </a>
-          <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmitFound}>
             <div class="content">
               <label for="fname">Item Name: </label>
               <input
@@ -74,16 +90,18 @@ function Navbar() {
             </div>
             <div class="popup-body">
               <label for="fname">Location Found: </label>
-              <select name="buildings" id="build">
+              <select name="buildings" id="build"
+              value = {location}
+              onChange = {(e) => setLocation(e.target.value)}>
                 <option value="empty"></option>
-                <option value="baker">Baker</option>
-                <option value="barlett">Bartlett</option>
-                <option value="berkshire">Berkshire</option>
-                <option value="birch">Birch</option>
-                <option value="bowditch">Bowditch</option>
-                <option value="brett">Brett</option>
-                <option value="brooks">Brooks</option>
-                <option value="butterfield">Butterfield</option>
+                <option value="Baker">Baker</option>
+                <option value="Bartlett">Bartlett</option>
+                <option value="Berkshire">Berkshire</option>
+                <option value="Birch">Birch</option>
+                <option value="Bowditch">Bowditch</option>
+                <option value="Brett">Brett</option>
+                <option value="Brooks">Brooks</option>
+                <option value="Butterfield">Butterfield</option>
                 <option value="Campus Center">Campus Center</option>
                 <option value="Chadbourne">Chadbourne</option>
                 <option value="Gorman">Gorman</option>
@@ -214,7 +232,7 @@ function Navbar() {
           <a class="close" href="#">
             &times;
           </a>
-          <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmitLost}>
             <div class="content">
               <label for="fname">Item Name: </label>
               <input
@@ -237,16 +255,18 @@ function Navbar() {
             </div>
             <div class="popup-body1">
               <label for="fname">Location Lost: </label>
-              <select name="buildings" id="build">
+              <select name="buildings" id="build"
+              value = {location}
+              onChange = {(e) => setLocation(e.target.value)}>
                 <option value="empty"></option>
-                <option value="baker">Baker</option>
-                <option value="barlett">Bartlett</option>
-                <option value="berkshire">Berkshire</option>
-                <option value="birch">Birch</option>
-                <option value="bowditch">Bowditch</option>
-                <option value="brett">Brett</option>
-                <option value="brooks">Brooks</option>
-                <option value="butterfield">Butterfield</option>
+                <option value="Baker">Baker</option>
+                <option value="Bartlett">Bartlett</option>
+                <option value="Berkshire">Berkshire</option>
+                <option value="Birch">Birch</option>
+                <option value="Bowditch">Bowditch</option>
+                <option value="Brett">Brett</option>
+                <option value="Brooks">Brooks</option>
+                <option value="Butterfield">Butterfield</option>
                 <option value="Campus Center">Campus Center</option>
                 <option value="Chadbourne">Chadbourne</option>
                 <option value="Gorman">Gorman</option>

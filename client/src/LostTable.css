@@ -1,5 +1,6 @@
 .search {
-  width: 25%;
+  margin-left: 10%;
+  width: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,6 +8,18 @@
 }
 
 .filter {
+  margin-top: 7%;
   text-align: center;
   float: right;
+}
+.box {
+  border: 5px solid #971b2f;
+  background-color: lightgray;
+  padding: 40px;
+  margin-top: 7%;
+  width: 250px;
+  height: 500px;
+  margin-right: 1%;
+  float: right;
+  overflow: auto;
 }
