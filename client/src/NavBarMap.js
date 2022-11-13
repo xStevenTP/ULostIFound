@@ -43,6 +43,11 @@ function NavbarMap() {
 
   return (
     <div className="Navbar">
+      <div className="name">
+        <h2>
+          <center>ULost IFound</center>
+        </h2>
+      </div>
       <div className="middle">
         <a class="button" href="#popup1">
           <center>I FOUND</center>
