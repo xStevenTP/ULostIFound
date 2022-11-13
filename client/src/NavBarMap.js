@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./NavBarMap.css";
+import "./NavBar.css";
 import axios from "axios";
 
 function NavbarMap() {
