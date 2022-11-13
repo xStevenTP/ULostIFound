@@ -47,6 +47,16 @@ class MainServer {
       }
     });
 
+    this.app.get('/found/:building', async (req, res) => {
+      try {
+        const building = req.params.building;
+        const data = await self.db.readFoundBuilding(building);
+        res.send(JSON.stringify(data));
+      } catch (err) {
+        res.status(500).send(err);
+      }
+    })
+
     this.app.delete('/found/delete', async (req, res) => {
       try {
         const {item, description, name, email, location} = req.body;
@@ -73,6 +83,16 @@ class MainServer {
         res.status(500).send(err);
       }
     });
+
+    this.app.get('/lost/:building', async (req, res) => {
+      try {
+        const building = req.params.building;
+        const data = await self.db.readLostBuilding(building);
+        res.send(JSON.stringify(data));
+      } catch (err) {
+        res.status(500).send(err);
+      }
+    })
 
     this.app.delete('/lost/delete', async (req, res) => {
       try {
