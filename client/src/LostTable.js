@@ -86,7 +86,7 @@ const LostTable = () => {
     'Visitors Center', 'Whitmore', 'Webster', 'Wheeler',
     'Worcester', 'Isenberg', 'Crotty', 'Gordon', 'Bromery', 'Curry Hicks',
     'Tobin', 'Machmer', 'Du Bois', 'Oliver', 'Fernald', 'Wilder', 'Skinner',
-    'ISC', 'ILC', 'LGRC', 'Astronomy', 'Furcolo', 'Montague', 'Totman', 'Stockbridge',
+    'ISB', 'ILC', 'LGRC', 'Astronomy', 'Furcolo', 'Montague', 'Totman', 'Stockbridge',
     'Linden', 'Maple', 'Field', 'Cance', 'Crampton', 'James',
     'John Adams', 'MacKimmie', 'Melville', 'Pierpont', 'Prince',
     'Washington', 'Brown', 'Cashin', 'Rec Center']);
@@ -239,7 +239,7 @@ const LostTable = () => {
     (filters.includes('Wilder') && item.where === ('Wilder')) ||
     (filters.includes('Skinner') && item.where === ('Skinner')) ||
     (filters.includes('Life Sciences') && item.where === ('Life Sciences')) ||
-    (filters.includes('ISC') && item.where === ('ISC')) ||
+    (filters.includes('ISB') && item.where === ('ISB')) ||
     (filters.includes('Goessman') && item.where === ('Goessman')) ||
     (filters.includes('Physical Sciences') && item.where === ('Physical Sciences')) ||
     (filters.includes('LGRC') && item.where === ('LGRC')) ||
@@ -445,9 +445,9 @@ const LostTable = () => {
               control = 
               { <Checkbox 
                 defaultChecked
-                checked = {filters.includes('ISC')}
-                onChange = {() => handleFilter('ISC')} /> } 
-                label = 'ISC' />
+                checked = {filters.includes('ISB')}
+                onChange = {() => handleFilter('ISB')} /> } 
+                label = 'ISB' />
             <FormControlLabel
               control = 
               { <Checkbox 
