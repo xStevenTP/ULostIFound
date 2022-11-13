@@ -10,17 +10,23 @@ function HomePage(){
     const [lost, setLost] = React.useState([]);
     const [found, setFound] = React.useState([]);
     let foundData = [];
+    let lostData = [];
     
     const getBuildings = async (building) => {
-        const foundArr = await axios.get(`http://localhost:8080/found/${building}`);
-        const lostArr = await axios.get(`http://localhost:8080/lost/${building}`);
-        console.log(foundArr.data)
-        foundData = foundArr.data;
-        console.log(foundData)
-        setFound(foundArr.data);
-        console.log(found);
-        setLost(lostArr.data);
-        console.log(lost);
+        axios.get(`http://localhost:8080/found/${building}`)
+        .then ((response) => {
+            foundData = response.data;
+            setFound(foundData);
+            console.log(foundData);
+            console.log(response.data);
+            console.log(found);
+        })
+        axios.get(`http://localhost:8080/lost/${building}`)
+        .then ((response) => {
+            lostData = response.data;
+            setLost(lostData);
+            console.log(lost);
+    });
     }
 
     return(
@@ -41,7 +47,7 @@ function HomePage(){
                             await getBuildings(point.location);
                             //console.log(found);
                             //console.log(lost);
-                            console.log(foundData);
+                            //console.log(foundData);
                         },
                     }}
                     >
