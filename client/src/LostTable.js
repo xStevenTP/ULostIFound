@@ -82,7 +82,6 @@ const LostTable = () => {
     ])
       .then(axios.spread(function (found, lost) {
         const totalItems = found.data.concat(lost.data);
-        console.log(totalItems);
         setList(totalItems);
       }))
       .catch(error => console.error((`Error: ${error}`)))
