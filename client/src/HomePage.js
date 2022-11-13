@@ -39,8 +39,8 @@ function HomePage(){
                 {locationData.map(point => (
                     <Marker
                     position={[
-                        point.coordinate[0],
-                        point.coordinate[1]
+                        point.coorindate[0],
+                        point.coorindate[1]
                     ]}
                     eventHandlers={{
                         click: async(e) => {
