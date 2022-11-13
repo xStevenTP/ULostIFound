@@ -1,11 +1,13 @@
-import LostTable from "./LostTable.js"
+import LostTable from "./LostTable.js";
+import Navbar from "./NavBar.js";
 
 const App = () => {
   return (
-    <div>
+    <section>
+      <Navbar />
       <LostTable />
-    </div>
-  )
-}
+    </section>
+  );
+};
 
 export default App;
