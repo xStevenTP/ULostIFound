@@ -48,6 +48,11 @@ export class MainDatabase {
     return res;
   }
 
+  async readFoundBuilding(building) {
+    const res = await this.foundCollection.find({location:building}).toArray()
+    return res;
+  }
+
   async deleteFound(item, description, name, email, location) {
     await this.foundCollection.deleteOne({ item:item, description:description, name:name, email:email, location:location});
   }
@@ -65,6 +70,11 @@ export class MainDatabase {
   // read all lost from the lost collection
   async readAllLost() {
     const res = await this.lostCollection.find({}).toArray();
+    return res;
+  }
+
+  async readLostBuilding(building) {
+    const res = await this.lostCollection.find({location:building}).toArray();
     return res;
   }
 
