@@ -6,8 +6,7 @@ import HomePage from "./HomePage.js";
 const App = () => {
   return (
     <section>
-      <NavbarMap />
-      <LostTable />
+      <HomePage/>
     </section>
   );
 };
