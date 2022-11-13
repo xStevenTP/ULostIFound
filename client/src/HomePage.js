@@ -9,14 +9,19 @@ import React from "react";
 function HomePage(){
     const [lost, setLost] = React.useState([]);
     const [found, setFound] = React.useState([]);
+    let foundData = [];
     
     const getBuildings = async (building) => {
         const foundArr = await axios.get(`http://localhost:8080/found/${building}`);
         const lostArr = await axios.get(`http://localhost:8080/lost/${building}`);
-        console.log(foundArr.data);
+        console.log(foundArr.data)
+        foundData = foundArr.data;
+        console.log(foundData)
         setFound(foundArr.data);
+        console.log(found);
         setLost(lostArr.data);
-    };
+        console.log(lost);
+    }
 
     return(
         <div>    
@@ -32,24 +37,31 @@ function HomePage(){
                         point.coorindate[1]
                     ]}
                     eventHandlers={{
-                        click: (e) => {
-                            getBuildings(point.location);
+                        click: async(e) => {
+                            await getBuildings(point.location);
+                            //console.log(found);
+                            //console.log(lost);
+                            console.log(foundData);
                         },
                     }}
                     >
                         <Popup>
-                            Found
-                            {found.forEach(value => {
-                                <div>
-                                {value.item} {value.name} {value.description} {value.location} {value.email}
-                                </div>
-                            })}
-                            Lost
-                            {lost.forEach(value => {
-                                <div>
-                                {value.item} {value.name} {value.description} {value.location} {value.email}
-                                </div>
-                            })}
+                            <div>
+                                Found
+                                {foundData.map(value => {
+                                    <div>
+                                    {value.item} {value.name} {value.description} {value.location} {value.email}
+                                    </div>
+                                })}
+                            </div>
+                            <div>
+                                Lost
+                                {lost.map(value => {
+                                    <div>
+                                    {value.item} {value.name} {value.description} {value.location} {value.email}
+                                    </div>
+                                })}
+                            </div>
                         </Popup>
                     </Marker>
                 ))}
