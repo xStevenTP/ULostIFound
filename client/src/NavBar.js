@@ -50,25 +50,25 @@ function Navbar() {
         </h2>
       </div>
       <div className="middle">
-        <a class="button" href="#popup1">
+        <a className="button" href="#popup1">
           <center>I FOUND</center>
         </a>
-        <a class="button" href="#popup2">
+        <a className="button" href="#popup2">
           <center>I LOST</center>
         </a>
       </div>
 
       <div classname="TypeOfPage"></div>
       <div id="popup1" class="overlay">
-        <div class="popup">
+        <div className="popup">
           <h2>
             <center>FOUND</center>
           </h2>
-          <a class="close" href="#">
+          <a className="close" href="#">
             &times;
           </a>
           <form onSubmit={onSubmitFound}>
-            <div class="content">
+            <div className="content">
               <label for="fname">Item Name: </label>
               <input
                 value={item}
@@ -88,7 +88,7 @@ function Navbar() {
               <br></br>
               <p></p>
             </div>
-            <div class="popup-body">
+            <div className="popup-body">
               <label for="fname">Location Found: </label>
               <select name="buildings" id="build"
                 value = {location}
@@ -195,7 +195,7 @@ function Navbar() {
               <br></br>
               <p></p>
             </div>
-            <div class="popup-body">
+            <div className="popup-body">
               <label for="fname">Email: </label>
               <input
                 value={email}
@@ -205,7 +205,7 @@ function Navbar() {
               <br></br>
               <p></p>
             </div>
-            <div class="popup-body">
+            <div className="popup-body">
               <label for="fname">Description: </label>
               <input
                 value={description}
@@ -218,22 +218,22 @@ function Navbar() {
             <div className="submit-button">
               <button className="btn btn-primary">Submit</button>
             </div>
-            <a class="close" href="#">
+            <a className="close" href="#">
               &times;
             </a>
           </form>
         </div>
       </div>
       <div id="popup2" class="overlay">
-        <div class="popup">
+        <div className="popup">
           <h2>
             <center>LOST</center>
           </h2>
-          <a class="close" href="#">
+          <a className="close" href="#">
             &times;
           </a>
           <form onSubmit={onSubmitLost}>
-            <div class="content">
+            <div className="content">
               <label for="fname">Item Name: </label>
               <input
                 value={item}
@@ -243,7 +243,7 @@ function Navbar() {
               <br></br>
               <p></p>
             </div>
-            <div class="popup-body">
+            <div className="popup-body">
               <label for="fname">Personal Name: </label>
               <input
                 value={name}
@@ -253,7 +253,7 @@ function Navbar() {
               <br></br>
               <p></p>
             </div>
-            <div class="popup-body1">
+            <div className="popup-body1">
               <label for="fname">Location Lost: </label>
               <select name="buildings" id="build"
                 value = {location}
@@ -360,7 +360,7 @@ function Navbar() {
               <br></br>
               <p></p>
             </div>
-            <div class="popup-body2">
+            <div className="popup-body2">
               <label for="fname">Email: </label>
               <input
                 value={email}
@@ -370,7 +370,7 @@ function Navbar() {
               <br></br>
               <p></p>
             </div>
-            <div class="popup-body3">
+            <div className="popup-body3">
               <label for="fname">Description: </label>
               <input
                 value={description}
